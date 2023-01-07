@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Files
+/KMDFDriver1/.vs/
+/KMDFDriver1/x64/Debug
