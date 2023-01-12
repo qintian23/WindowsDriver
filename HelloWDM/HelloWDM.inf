@@ -53,3 +53,5 @@ SPSVCINST_ASSOCSERVICE = 0X00000002
 ManufacturerName="zhulc" ;TODO: Replace with your manufacturer name
 ClassName="Sampls"
 DiskName="HelloWDM Source Disk"
+HelloWDM.DeviceDesc = "HelloWDM Device"
+HelloWDM.SVCDESC = "HelloWDM Service"
