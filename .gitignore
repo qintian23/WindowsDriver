@@ -58,3 +58,4 @@ dkms.conf
 /KMDFCapter1/x64/Debug
 /NTDriver1/x64/Debug
 /.vs
+/LoadNTDriver/x64/Debug
