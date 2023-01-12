@@ -15,8 +15,8 @@ extern "C"
 #define INITCODE code_seg("INIT")
 
 #define PAGEDDATA data_seg("PAGE")
-#define PAGEDDATA data_seg()
-#define PAGEDATA data_seg("PAGE")
+#define LOCKEDDATA data_seg()
+#define INITDATA data_seg("INIT")
 
 typedef struct _DEVICE_EXTENSION
 {

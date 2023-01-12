@@ -7,28 +7,51 @@ Signature="$WINDOWS NT$"
 Class=System
 ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider=%ManufacturerName%
-DriverVer=
+DriverVer=1/7/2023,1.0.0.1
 CatalogFile=HelloWDM.cat
 PnpLockdown=1
 
 ;This template is supported for OS version 17763 (Windows 10 version 1809) and after.
 ;For Windows OS prior to Windows 10 1809 set DefaultDestDir = 12
 [DestinationDirs]
-DefaultDestDir = 13
+DefaultDestDir = 12
 
 
 [SourceDisksNames]
+;1 = %DiskName%,,,""
+;1 = "HelloWDM",Disk1,,
 1 = %DiskName%,,,""
 
 [SourceDisksFiles]
-
+HelloWDM.sys = 1,,
 
 [Manufacturer]
 %ManufacturerName%=Standard,NT$ARCH$
 
 [Standard.NT$ARCH$]
+%HelloWDM.DeviceDesc%=HelloWDM, Root\HelloWDM ; TODO: edit hw-id
 
+[HelloWDM.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+HelloWDM.sys
+
+;-------------- Service installation
+[HelloWDM.NT.Service]
+AddService = HelloWDM,%SPSVCINST_ASSOCSERVICE%, HelloWDM_Service_Inst
+
+;------------- HelloWDM driver install sections
+DisplayName = %HelloWDM.SVCDESC%
+ServiceType = 1		; SERVICE_KERNEL_DRIVER
+StartType = 3		; SERVICE DEMAND START
+ERRORControl = 1    ; SERVICE ERROR NORMAL
+ServiceBinary = %12%\HelloWDM.sys
 
 [Strings]
-ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+SPSVCINST_ASSOCSERVICE = 0X00000002
+ManufacturerName="zhulc" ;TODO: Replace with your manufacturer name
+ClassName="Sampls"
 DiskName="HelloWDM Source Disk"
+HelloWDM.DeviceDesc = "HelloWDM Device"
+HelloWDM.SVCDESC = "HelloWDM Service"

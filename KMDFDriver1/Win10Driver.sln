@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KMDFCapter1", "..\KMDFCapte
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NTDriver1", "..\NTDriver1\NTDriver1.vcxproj", "{272C3B32-C3D3-4014-9ED8-AE574B187341}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chapter01", "chapter01", "{05EA40AE-0B8E-4B79-8C6C-6C6D808746D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -70,6 +72,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F7ABF5F-A699-4F6A-BF48-9F719C9D26F2} = {05EA40AE-0B8E-4B79-8C6C-6C6D808746D3}
+		{8BBF7EC1-401E-4E05-8C66-111216918B43} = {05EA40AE-0B8E-4B79-8C6C-6C6D808746D3}
+		{DCD621CE-A5F3-4E6F-B93E-8B7865D03367} = {05EA40AE-0B8E-4B79-8C6C-6C6D808746D3}
+		{272C3B32-C3D3-4014-9ED8-AE574B187341} = {05EA40AE-0B8E-4B79-8C6C-6C6D808746D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {45C50A66-AA5F-477E-B538-F8240386D042}
