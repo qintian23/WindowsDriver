@@ -57,3 +57,4 @@ dkms.conf
 /HelloWDM/x64/Debug
 /KMDFCapter1/x64/Debug
 /NTDriver1/x64/Debug
+/.vs
