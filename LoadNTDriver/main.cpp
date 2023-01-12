@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <stdio.h>
 
-#define DRIVER_NAME "HelloDDK";
+#define DRIVER_NAME "HelloDDK"
 #define DRIVER_PATH "HelloWDM\\HelloDDK.sys"
 
 // ×°ÔØNTÇý¶¯³ÌÐò
