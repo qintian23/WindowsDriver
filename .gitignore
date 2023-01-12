@@ -54,3 +54,5 @@ dkms.conf
 # Files
 /KMDFDriver1/.vs/
 /KMDFDriver1/x64/Debug
+/HelloWDM/x64/Debug
+/KMDFCapter1/x64/Debug
