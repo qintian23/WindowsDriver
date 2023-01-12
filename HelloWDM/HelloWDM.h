@@ -33,11 +33,11 @@ typedef struct _DEVICE_EXTENSION
 
 #define arraysize(p) (sizeof(p)/sizeof((p)[0]))
 
-NTSTATUS HelloWDMAddDevice(IN PDRIVER_OBJECT DriverObject, IN PDRIVER_OBJECT PhysicalDeviceObject);
+NTSTATUS HelloWDMAddDevice(IN PDRIVER_OBJECT DriverObject, IN PDEVICE_OBJECT PhysicalDeviceObject);
 
-NTSTATUS HelloWDMPnp(IN PDRIVER_OBJECT fdo, IN PIRP Irp);
+NTSTATUS HelloWDMPnp(IN PDEVICE_OBJECT fdo, IN PIRP Irp);
 
-NTSTATUS HelloWDMDispatchRoutine(IN PDRIVER_OBJECT fdo, IN PIRP Irp);
+NTSTATUS HelloWDMDispatchRoutine(IN PDEVICE_OBJECT fdo, IN PIRP Irp);
 
 void HelloWDMUnload(IN PDRIVER_OBJECT DriverObject);
 

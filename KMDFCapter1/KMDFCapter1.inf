@@ -1,0 +1,77 @@
+;
+; KMDFCapter1.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=KMDFCapter1.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+KMDFCapter1_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+KMDFCapter1.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%KMDFCapter1.DeviceDesc%=KMDFCapter1_Device, Root\KMDFCapter1 ; TODO: edit hw-id
+
+[KMDFCapter1_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+KMDFCapter1.sys
+
+;-------------- Service installation
+[KMDFCapter1_Device.NT.Services]
+AddService = KMDFCapter1,%SPSVCINST_ASSOCSERVICE%, KMDFCapter1_Service_Inst
+
+; -------------- KMDFCapter1 driver install sections
+[KMDFCapter1_Service_Inst]
+DisplayName    = %KMDFCapter1.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\KMDFCapter1.sys
+
+;
+;--- KMDFCapter1_Device Coinstaller installation ------
+;
+
+[KMDFCapter1_Device.NT.CoInstallers]
+AddReg=KMDFCapter1_Device_CoInstaller_AddReg
+CopyFiles=KMDFCapter1_Device_CoInstaller_CopyFiles
+
+[KMDFCapter1_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[KMDFCapter1_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[KMDFCapter1_Device.NT.Wdf]
+KmdfService =  KMDFCapter1, KMDFCapter1_wdfsect
+[KMDFCapter1_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "KMDFCapter1 Installation Disk"
+KMDFCapter1.DeviceDesc = "KMDFCapter1 Device"
+KMDFCapter1.SVCDESC = "KMDFCapter1 Service"

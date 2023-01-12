@@ -19,18 +19,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="HelloWDM.inf">
+    <Inf Include="NTDriver1.inf">
       <Filter>Driver Files</Filter>
     </Inf>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelloWDM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="HelloWDM.cpp">
+    <ClCompile Include="HelloDriver1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelloDriver1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

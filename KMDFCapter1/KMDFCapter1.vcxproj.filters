@@ -19,17 +19,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="HelloWDM.inf">
+    <Inf Include="KMDFCapter1.inf">
       <Filter>Driver Files</Filter>
     </Inf>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HelloWDM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="HelloWDM.cpp">
+    <ClCompile Include="KMDFCapter1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
