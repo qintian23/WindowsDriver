@@ -242,13 +242,13 @@ int main(int argc, char* argv[])
 
 	// 加载成功
 	printf("press any to create device ! \n");
-	char tmpKey = getch();
+	char tmpKey = _getch();
 
 	TestDriver();
 
 	// 这时候你可以通过注册表，或其他查看符号连接的软件验证
 	printf("press any to unload th driver ! \n");
-	tmpKey = getch();
+	tmpKey = _getch();
 
 	// 卸载驱动
 	UnloadNTDriver(driver_name);
