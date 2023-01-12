@@ -222,10 +222,18 @@ void TestDriver()
 	CloseHandle(hDevice);
 }
 
+char* GetCharPtr(const char* target)
+{
+	char* result = const_cast<char*>(target); 
+	return result;
+}
+
 int main(int argc, char* argv[])
 {
+	char* driver_name = GetCharPtr(DRIVER_NAME);
+	char* driver_path = GetCharPtr(DRIVER_NAME);
 	// 加载驱动
-	BOOL bRet = LoadNTDriver(DRIVER_NAME, DRIVER_PATH);
+	BOOL bRet = LoadNTDriver(driver_name, driver_path);
 	if (!bRet)
 	{
 		printf("LOADNTDriver error\n");
@@ -234,16 +242,16 @@ int main(int argc, char* argv[])
 
 	// 加载成功
 	printf("press any to create device ! \n");
-	getch();
+	char tmpKey = getch();
 
 	TestDriver();
 
 	// 这时候你可以通过注册表，或其他查看符号连接的软件验证
 	printf("press any to unload th driver ! \n");
-	getch();
+	tmpKey = getch();
 
 	// 卸载驱动
-	UnloadNTDriver(DRIVER_NAME);
+	UnloadNTDriver(driver_name);
 	if (!bRet)
 	{
 		printf("UnloadNTDriver error \n");
