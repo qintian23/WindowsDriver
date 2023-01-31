@@ -59,3 +59,6 @@ dkms.conf
 /NTDriver1/x64/Debug
 /.vs
 /LoadNTDriver/x64/Debug
+/LoadNTDriver/x64/Release
+/KMDFDriver1/x64/Release
+/HelloWDM/x64/Release
