@@ -101,6 +101,7 @@ VOID HelloDDKUnload(IN PDRIVER_OBJECT pDriverObject)
 		pNextObj = pNextObj->NextDevice;
 		IoDeleteDevice(pDevExt->pDevice);
 	}
+	KdPrint(("Leave DriverUnload\n"));
 }
 
 /************************************************************************

@@ -18,6 +18,8 @@ extern "C"
 #define LOCKEDDATA data_seg()
 #define INITDATA data_seg("INIT")
 
+#define Arraysize(p) (sizeof(p)/sizeof((p)[0])
+
 typedef struct _DEVICE_EXTENSION
 {
 	PDEVICE_OBJECT pDevice;

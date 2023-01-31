@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #define DRIVER_NAME "HelloDDK"
-#define DRIVER_PATH "HelloWDM\\HelloDDK.sys"
+#define DRIVER_PATH "\\NTDriver1\\NTDriver1.sys"
 
 // 装载NT驱动程序
 BOOL LoadNTDriver(char* lpszDriverName, char* lpszDriverPath)
@@ -116,7 +116,7 @@ BOOL LoadNTDriver(char* lpszDriverName, char* lpszDriverPath)
 		}
 	}
 	bRet = TRUE;
-	// 离开前关闭句柄
+// 离开前关闭句柄
 BeforeLeave:
 	if (hServiceDDK)
 	{
@@ -230,6 +230,8 @@ char* GetCharPtr(const char* target)
 
 int main(int argc, char* argv[])
 {
+	printf("Hello this is a good Load dreiver exe!!!\n");
+	printf("The driver path: %s \n\n", DRIVER_PATH);
 	char* driver_name = GetCharPtr(DRIVER_NAME);
 	char* driver_path = GetCharPtr(DRIVER_NAME);
 	// 加载驱动
@@ -237,26 +239,28 @@ int main(int argc, char* argv[])
 	if (!bRet)
 	{
 		printf("LOADNTDriver error\n");
+		system("pause");
 		return 0;
 	}
 
 	// 加载成功
 	printf("press any to create device ! \n");
-	char tmpKey = _getch();
+	char tmpKey = getchar();
 
 	TestDriver();
 
 	// 这时候你可以通过注册表，或其他查看符号连接的软件验证
 	printf("press any to unload th driver ! \n");
-	tmpKey = _getch();
+	tmpKey = getchar();
 
 	// 卸载驱动
 	UnloadNTDriver(driver_name);
 	if (!bRet)
 	{
 		printf("UnloadNTDriver error \n");
+		system("pause");
 		return 0;
 	}
-
+	system("pause");
 	return 0;
 }
