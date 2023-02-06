@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 #define DRIVER_NAME "HelloDDK"
-#define DRIVER_PATH "\\NTDriver1\\NTDriver1.sys"
+#define DRIVER_PATH "\\HelloWDM\\HelloWDM.sys"
 
 // ×°ÔØNTÇý¶¯³ÌÐò
 BOOL LoadNTDriver(char* lpszDriverName, char* lpszDriverPath)

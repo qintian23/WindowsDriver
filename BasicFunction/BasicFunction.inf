@@ -1,0 +1,77 @@
+;
+; BasicFunction.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=BasicFunction.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+BasicFunction_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+BasicFunction.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%BasicFunction.DeviceDesc%=BasicFunction_Device, Root\BasicFunction ; TODO: edit hw-id
+
+[BasicFunction_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+BasicFunction.sys
+
+;-------------- Service installation
+[BasicFunction_Device.NT.Services]
+AddService = BasicFunction,%SPSVCINST_ASSOCSERVICE%, BasicFunction_Service_Inst
+
+; -------------- BasicFunction driver install sections
+[BasicFunction_Service_Inst]
+DisplayName    = %BasicFunction.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\BasicFunction.sys
+
+;
+;--- BasicFunction_Device Coinstaller installation ------
+;
+
+[BasicFunction_Device.NT.CoInstallers]
+AddReg=BasicFunction_Device_CoInstaller_AddReg
+CopyFiles=BasicFunction_Device_CoInstaller_CopyFiles
+
+[BasicFunction_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[BasicFunction_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[BasicFunction_Device.NT.Wdf]
+KmdfService =  BasicFunction, BasicFunction_wdfsect
+[BasicFunction_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "BasicFunction Installation Disk"
+BasicFunction.DeviceDesc = "BasicFunction Device"
+BasicFunction.SVCDESC = "BasicFunction Service"
