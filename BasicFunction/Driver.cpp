@@ -193,8 +193,8 @@ extern "C" NTSTATUS DriverEntry(
 	//LinkListTest();
 	//LookasideTest();
 	//StringTest();
-	//FileTest();
-	RegTest();
+	FileTest();
+	//RegTest();
 
 	KdPrint(("DriverEntry end\n"));
 	return status;

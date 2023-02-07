@@ -63,3 +63,5 @@ dkms.conf
 /KMDFDriver1/x64/Release
 /HelloWDM/x64/Release
 /BasicFunction/x64/Debug
+/WDMBasicFunction/x64/Debug
+/Test/x64/Debug
