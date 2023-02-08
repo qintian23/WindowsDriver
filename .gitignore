@@ -65,3 +65,4 @@ dkms.conf
 /BasicFunction/x64/Debug
 /WDMBasicFunction/x64/Debug
 /Test/x64/Debug
+/DispatchTest/x64/Debug

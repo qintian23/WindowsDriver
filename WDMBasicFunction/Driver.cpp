@@ -22,12 +22,10 @@ extern "C" NTSTATUS DriverEntry(
 
 	//设置派遣函数
 	for (int i = 0; i < arraysize(pDriverObject->MajorFunction); ++i)
-	{
 		pDriverObject->MajorFunction[i] = HelloDDKDispatchRoutin;
-	}
-
-	pDriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = HelloDDKDeviceIOControl;
+	pDriverObject->MajorFunction[IRP_MJ_WRITE] = HelloDDWrite;
 	pDriverObject->MajorFunction[IRP_MJ_READ] = HelloDDKRead;
+	pDriverObject->MajorFunction[IRP_MJ_QUERY_INFORMATION] = HelloDDKQueryInfomation;
 
 	//创建驱动设备对象
 	status = CreateDevice(pDriverObject);
@@ -105,13 +103,11 @@ VOID HelloDDKUnload(IN PDRIVER_OBJECT pDriverObject)
 	{
 		PDEVICE_EXTENSION pDevExt = (PDEVICE_EXTENSION)
 			pNextObj->DeviceExtension;
-
 		if (pDevExt->buffer)
 		{
 			ExFreePool(pDevExt->buffer);
 			pDevExt->buffer = NULL;
 		}
-
 		//删除符号链接
 		UNICODE_STRING pLinkName = pDevExt->ustrSymLinkName;
 		IoDeleteSymbolicLink(&pLinkName);
@@ -187,131 +183,6 @@ NTSTATUS HelloDDKDispatchRoutin(IN PDEVICE_OBJECT pDevObj,
 	return status;
 }
 
-#pragma PAGEDCODE
-NTSTATUS HelloDDKDeviceIOControl(IN PDEVICE_OBJECT pDevObj,
-	IN PIRP pIrp)
-{
-	NTSTATUS status = STATUS_SUCCESS;
-	KdPrint(("Enter HelloDDKDeviceIOControl\n"));
-
-	//得到当前堆栈
-	PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(pIrp);
-	//得到输入缓冲区大小
-	ULONG cbin = stack->Parameters.DeviceIoControl.InputBufferLength;
-	//得到输出缓冲区大小
-	ULONG cbout = stack->Parameters.DeviceIoControl.OutputBufferLength;
-	//得到IOCTL码
-	ULONG code = stack->Parameters.DeviceIoControl.IoControlCode;
-
-	ULONG info = 0;
-
-	switch (code)
-	{						// process request
-	case IOCTL_TEST1:
-	{
-		KdPrint(("IOCTL_TEST1\n"));
-		//缓冲区方式IOCTL
-		//显示输入缓冲区数据
-		UCHAR* InputBuffer = (UCHAR*)pIrp->AssociatedIrp.SystemBuffer;
-		for (ULONG i = 0; i < cbin; i++)
-		{
-			KdPrint(("%X\n", InputBuffer[i]));
-		}
-
-		//操作输出缓冲区
-		UCHAR* OutputBuffer = (UCHAR*)pIrp->AssociatedIrp.SystemBuffer;
-		memset(OutputBuffer, 0xAA, cbout);
-		//设置实际操作输出缓冲区长度
-		info = cbout;
-		break;
-	}
-	case IOCTL_TEST2:
-	{
-		KdPrint(("IOCTL_TEST2\n"));
-		//缓冲区方式IOCTL
-		//显示输入缓冲区数据
-
-		//缓冲区方式IOCTL
-		//显示输入缓冲区数据
-		UCHAR* InputBuffer = (UCHAR*)pIrp->AssociatedIrp.SystemBuffer;
-		for (ULONG i = 0; i < cbin; i++)
-		{
-			KdPrint(("%X\n", InputBuffer[i]));
-		}
-
-		//pIrp->MdlAddress为DeviceIoControl输出缓冲区地址相同
-		KdPrint(("User Address:0X%08X\n", MmGetMdlVirtualAddress(pIrp->MdlAddress)));
-
-		UCHAR* OutputBuffer = (UCHAR*)MmGetSystemAddressForMdlSafe(pIrp->MdlAddress, NormalPagePriority);
-		//InputBuffer被映射到内核模式下的内存地址，必定在0X80000000-0XFFFFFFFF之间
-		memset(OutputBuffer, 0xAA, cbout);
-		//设置实际操作输出缓冲区长度
-		info = cbout;
-		break;
-	}
-	case IOCTL_TEST3:
-	{
-		KdPrint(("IOCTL_TEST3\n"));
-		//缓冲区方式IOCTL
-
-		//缓冲区方式IOCTL
-		//显示输入缓冲区数据
-		UCHAR* UserInputBuffer = (UCHAR*)stack->Parameters.DeviceIoControl.Type3InputBuffer;
-		KdPrint(("UserInputBuffer:0X%0X\n", UserInputBuffer));
-
-		//得到用户模式地址
-		PVOID UserOutputBuffer = pIrp->UserBuffer;
-
-		KdPrint(("UserOutputBuffer:0X%0X\n", UserOutputBuffer));
-
-		__try
-		{
-			KdPrint(("Enter __try block\n"));
-
-			//判断指针是否可读
-			ProbeForRead(UserInputBuffer, cbin, 4);
-			//显示输入缓冲区内容
-			for (ULONG i = 0; i < cbin; i++)
-			{
-				KdPrint(("%X\n", UserInputBuffer[i]));
-			}
-
-			//判断指针是否可写
-			ProbeForWrite(UserOutputBuffer, cbout, 4);
-
-			//操作输出缓冲区
-			memset(UserOutputBuffer, 0xAA, cbout);
-
-			//由于在上面引发异常，所以以后语句不会被执行!
-			info = cbout;
-
-			KdPrint(("Leave __try block\n"));
-		}
-		__except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			KdPrint(("Catch the exception\n"));
-			KdPrint(("The program will keep going\n"));
-			status = STATUS_UNSUCCESSFUL;
-		}
-
-		info = cbout;
-		break;
-	}
-
-	default:
-		status = STATUS_INVALID_VARIANT;
-	}
-
-	// 完成IRP
-	pIrp->IoStatus.Status = status;
-	pIrp->IoStatus.Information = info;	// bytes xfered
-	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
-
-	KdPrint(("Leave HelloDDKDeviceIOControl\n"));
-
-	return status;
-}
-
 NTSTATUS HelloDDKRead(IN PDEVICE_OBJECT pDevObj,
 	IN PIRP pIrp)
 {
@@ -321,77 +192,19 @@ NTSTATUS HelloDDKRead(IN PDEVICE_OBJECT pDevObj,
 	NTSTATUS status = STATUS_SUCCESS;
 
 	PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(pIrp);
-
 	ULONG ulReadLength = stack->Parameters.Read.Length;
-	KdPrint(("ulReadLength:%d\n", ulReadLength));
+	ULONG ulReadOffset = (ULONG)stack->Parameters.Read.ByteOffset.QuadPart;
 
-	ULONG mdl_length = MmGetMdlByteCount(pIrp->MdlAddress);
-	PVOID mdl_address = MmGetMdlVirtualAddress(pIrp->MdlAddress);
-	ULONG mdl_offset = MmGetMdlByteOffset(pIrp->MdlAddress);
-
-	KdPrint(("mdl_address:0X%08X\n", mdl_address));
-	KdPrint(("mdl_length:%d\n", mdl_length));
-	KdPrint(("mdl_offset:%d\n", mdl_offset));
-
-	if (mdl_length != ulReadLength)
+	if (ulReadOffset + ulReadLength > MAX_FILE_LENGTH)
 	{
-		//MDL的长度应该和读长度相等，否则该操作应该设为不成功
-		pIrp->IoStatus.Information = 0;
-		status = STATUS_UNSUCCESSFUL;
+		status = STATUS_FILE_INVALID;
+		ulReadLength = 0;
 	}
 	else
 	{
-		//用MmGetSystemAddressForMdlSafe得到MDL在内核模式下的映射
-		PVOID kernel_address = MmGetSystemAddressForMdlSafe(pIrp->MdlAddress, NormalPagePriority);
-		KdPrint(("kernel_address:0X%08X\n", kernel_address));
-		memset(kernel_address, 0XAA, ulReadLength);
-		pIrp->IoStatus.Information = ulReadLength;	// bytes xfered
-	}
-
-	pIrp->IoStatus.Status = status;
-
-	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
-	KdPrint(("Leave HelloDDKRead\n"));
-
-	return status;
-}
-
-/*
-NTSTATUS HelloDDKRead(IN PDEVICE_OBJECT pDevObj,
-	IN PIRP pIrp)
-{
-	KdPrint(("Enter HelloDDKRead\n"));
-
-	PDEVICE_EXTENSION pDevExt = (PDEVICE_EXTENSION)pDevObj->DeviceExtension;
-	NTSTATUS status = STATUS_SUCCESS;
-
-	//得到当前堆栈
-	PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(pIrp);
-	//得到读的长度
-	ULONG ulReadLength = stack->Parameters.Read.Length;
-	//得到读的偏移量
-	ULONG ulReadOffset = (ULONG)stack->Parameters.Read.ByteOffset.QuadPart;
-	//得到用户模式地址
-	PVOID user_address = pIrp->UserBuffer;
-
-	KdPrint(("user_address:0X%0X\n", user_address));
-
-	__try
-	{
-		KdPrint(("Enter __try block\n"));
-		//判断空指针是否可写，显然会导致异常
-		ProbeForWrite(user_address, ulReadLength, 4);
-
-		memset(user_address, 0xAA, ulReadLength);
-
-		//由于在上面引发异常，所以以后语句不会被执行!
-		KdPrint(("Leave __try block\n"));
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER)
-	{
-		KdPrint(("Catch the exception\n"));
-		KdPrint(("The program will keep going\n"));
-		status = STATUS_UNSUCCESSFUL;
+		//将数据存储在AssociatedIrp.SystemBuffer，以便应用程序使用
+		memcpy(pIrp->AssociatedIrp.SystemBuffer, pDevExt->buffer + ulReadOffset, ulReadLength);
+		status = STATUS_SUCCESS;
 	}
 
 	pIrp->IoStatus.Status = status;
@@ -401,5 +214,74 @@ NTSTATUS HelloDDKRead(IN PDEVICE_OBJECT pDevObj,
 
 	return status;
 }
-*/
 
+NTSTATUS HelloDDWrite(IN PDEVICE_OBJECT pDevObj,
+	IN PIRP pIrp)
+{
+	KdPrint(("Enter HelloDDWrite\n"));
+
+	NTSTATUS status = STATUS_SUCCESS;
+
+	PDEVICE_EXTENSION pDevExt = (PDEVICE_EXTENSION)pDevObj->DeviceExtension;
+
+	PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(pIrp);
+	//获取存储的长度
+	ULONG ulWriteLength = stack->Parameters.Write.Length;
+	//获取存储的偏移量
+	ULONG ulWriteOffset = (ULONG)stack->Parameters.Write.ByteOffset.QuadPart;
+
+	if (ulWriteOffset + ulWriteLength > MAX_FILE_LENGTH)
+	{
+		//如果存储长度+偏移量大于缓冲区长度，则返回无效
+		status = STATUS_FILE_INVALID;
+		ulWriteLength = 0;
+	}
+	else
+	{
+		//将写入的数据，存储在缓冲区内
+		memcpy(pDevExt->buffer + ulWriteOffset, pIrp->AssociatedIrp.SystemBuffer, ulWriteLength);
+		status = STATUS_SUCCESS;
+		//设置新的文件长度
+		if (ulWriteLength + ulWriteOffset > pDevExt->file_length)
+		{
+			pDevExt->file_length = ulWriteLength + ulWriteOffset;
+		}
+	}
+
+	pIrp->IoStatus.Status = status;
+	pIrp->IoStatus.Information = ulWriteLength;	// bytes xfered
+	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+	KdPrint(("Leave HelloDDWrite\n"));
+	return status;
+}
+
+
+
+NTSTATUS HelloDDKQueryInfomation(IN PDEVICE_OBJECT pDevObj,
+	IN PIRP pIrp)
+{
+	KdPrint(("Enter HelloDDKQueryInfomation\n"));
+
+	PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(pIrp);
+
+	PDEVICE_EXTENSION pDevExt = (PDEVICE_EXTENSION)pDevObj->DeviceExtension;
+
+	FILE_INFORMATION_CLASS info = stack->Parameters.QueryFile.FileInformationClass;
+	if (info == FileStandardInformation)
+	{
+		KdPrint(("FileStandardInformation\n"));
+		PFILE_STANDARD_INFORMATION file_info =
+			(PFILE_STANDARD_INFORMATION)pIrp->AssociatedIrp.SystemBuffer;
+		file_info->EndOfFile = RtlConvertLongToLargeInteger(pDevExt->file_length);
+	}
+
+	NTSTATUS status = STATUS_SUCCESS;
+	// 完成IRP
+	pIrp->IoStatus.Status = status;
+	pIrp->IoStatus.Information = stack->Parameters.QueryFile.Length;	// bytes xfered
+	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+
+	KdPrint(("Leave HelloDDKQueryInfomation\n"));
+
+	return status;
+}
