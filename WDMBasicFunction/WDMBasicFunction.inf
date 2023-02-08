@@ -71,7 +71,7 @@ KmdfLibraryVersion = $KMDFVERSION$
 
 [Strings]
 SPSVCINST_ASSOCSERVICE= 0x00000002
-ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
-DiskName = "WDMBasicFunction Installation Disk"
+ManufacturerName="Zhulc" ;TODO: Replace with your manufacturer name
+DiskName = "WDMBasicFunctionDisk"
 WDMBasicFunction.DeviceDesc = "WDMBasicFunction Device"
 WDMBasicFunction.SVCDESC = "WDMBasicFunction Service"

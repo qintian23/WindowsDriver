@@ -335,17 +335,17 @@ VOID ReadFileTest()
 VOID FileTest()
 {
     //创建文件实验
-//	CreateFileTest();
+	//CreateFileTest(); // :)
 
     //打开文件实验
-//	OpenFileTest1();
-    OpenFileTest2();
+    //	OpenFileTest1();
+    //OpenFileTest2();
 
     //	FileAttributeTest();
 
         //写文件、追加文件实验
-    //	WriteFileTest();
+    	//WriteFileTest();
 
-    //	ReadFileTest();
+    	ReadFileTest();
 
 }

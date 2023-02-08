@@ -565,12 +565,12 @@ VOID RtlRegTest()
 #pragma INITCODE
 VOID RegTest()
 {
-    CreateRegTest();
-    // 	OpenRegTest();
-    // 	SetRegTest();
+    //CreateRegTest();
+     	//OpenRegTest();
+     	SetRegTest();
     //	QueryRegTest();
     //	EnumerateSubItemRegTest();
     //	EnumerateSubValueRegTest();
-    DeleteItemRegTest();
+    //DeleteItemRegTest();
     //	RtlRegTest();
 }

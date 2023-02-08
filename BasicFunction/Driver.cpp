@@ -37,7 +37,8 @@ void Dump(IN PDRIVER_OBJECT pDriverObject)
 	  pDriverObject:从I/O管理器中传进来的驱动对象
 * 返回 值:返回初始化状态
 *************************************************************************/
-#pragma INITCODE
+//#pragma INITCODE // 有蓝屏情况
+#pragma PAGEDCODE
 NTSTATUS CreateDevice(IN PDRIVER_OBJECT pDriverObject)
 {
 	NTSTATUS status;
@@ -76,7 +77,8 @@ NTSTATUS CreateDevice(IN PDRIVER_OBJECT pDriverObject)
 	return STATUS_SUCCESS;
 }
 
-#pragma INITCODE
+//#pragma INITCODE // 有蓝屏情况
+#pragma PAGEDCODE
 NTSTATUS CreateDevice2(IN PDRIVER_OBJECT pDriverObject)
 {
 	NTSTATUS status;
@@ -127,6 +129,7 @@ VOID HelloDDKUnload(IN PDRIVER_OBJECT pDriverObject)
 	PDEVICE_OBJECT	pNextObj;
 	KdPrint(("Enter DriverUnload\n"));
 	pNextObj = pDriverObject->DeviceObject;
+
 	while (pNextObj != NULL)
 	{
 		PDEVICE_EXTENSION pDevExt = (PDEVICE_EXTENSION)
@@ -138,6 +141,9 @@ VOID HelloDDKUnload(IN PDRIVER_OBJECT pDriverObject)
 		pNextObj = pNextObj->NextDevice;
 		IoDeleteDevice(pDevExt->pDevice);
 	}
+
+	KdPrint(("Leave DriverUnload\n"));
+	//PAGE_FAULT_IN_NON_PAGED_AREA
 }
 
 /************************************************************************
@@ -170,7 +176,8 @@ NTSTATUS HelloDDKDispatchRoutine(IN PDEVICE_OBJECT pDevObj,
 	  pRegistryPath:驱动程序在注册表的中的路径
 * 返回 值:返回初始化驱动状态
 *************************************************************************/
-#pragma INITCODE
+//#pragma INITCODE // 有蓝屏情况
+#pragma PAGEDCODE
 extern "C" NTSTATUS DriverEntry(
 	IN PDRIVER_OBJECT pDriverObject,
 	IN PUNICODE_STRING pRegistryPath)
@@ -193,8 +200,8 @@ extern "C" NTSTATUS DriverEntry(
 	//LinkListTest();
 	//LookasideTest();
 	//StringTest();
-	FileTest();
-	//RegTest();
+	//FileTest();
+	RegTest();
 
 	KdPrint(("DriverEntry end\n"));
 	return status;

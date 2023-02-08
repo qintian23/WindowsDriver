@@ -29,6 +29,6 @@ typedef struct _DEVICE_EXTENSION
 
 NTSTATUS HelloWDMDispatchRoutine(IN PDEVICE_OBJECT fdo, IN PIRP Irp);
 
-void HelloWDMUnload(IN PDRIVER_OBJECT DriverObject);
+VOID HelloWDMUnload(IN PDRIVER_OBJECT DriverObject);
 
 NTSTATUS CreateDevice(IN PDRIVER_OBJECT DriverObject);
