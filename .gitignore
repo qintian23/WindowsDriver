@@ -66,3 +66,4 @@ dkms.conf
 /WDMBasicFunction/x64/Debug
 /Test/x64/Debug
 /DispatchTest/x64/Debug
+/SpecialStartIOTest/x64/Debug

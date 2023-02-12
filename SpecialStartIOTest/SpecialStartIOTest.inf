@@ -1,0 +1,77 @@
+;
+; SpecialStartIOTest.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=SpecialStartIOTest.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+SpecialStartIOTest_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+SpecialStartIOTest.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%SpecialStartIOTest.DeviceDesc%=SpecialStartIOTest_Device, Root\SpecialStartIOTest ; TODO: edit hw-id
+
+[SpecialStartIOTest_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+SpecialStartIOTest.sys
+
+;-------------- Service installation
+[SpecialStartIOTest_Device.NT.Services]
+AddService = SpecialStartIOTest,%SPSVCINST_ASSOCSERVICE%, SpecialStartIOTest_Service_Inst
+
+; -------------- SpecialStartIOTest driver install sections
+[SpecialStartIOTest_Service_Inst]
+DisplayName    = %SpecialStartIOTest.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\SpecialStartIOTest.sys
+
+;
+;--- SpecialStartIOTest_Device Coinstaller installation ------
+;
+
+[SpecialStartIOTest_Device.NT.CoInstallers]
+AddReg=SpecialStartIOTest_Device_CoInstaller_AddReg
+CopyFiles=SpecialStartIOTest_Device_CoInstaller_CopyFiles
+
+[SpecialStartIOTest_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[SpecialStartIOTest_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[SpecialStartIOTest_Device.NT.Wdf]
+KmdfService =  SpecialStartIOTest, SpecialStartIOTest_wdfsect
+[SpecialStartIOTest_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "SpecialStartIOTest Installation Disk"
+SpecialStartIOTest.DeviceDesc = "SpecialStartIOTest Device"
+SpecialStartIOTest.SVCDESC = "SpecialStartIOTest Service"
