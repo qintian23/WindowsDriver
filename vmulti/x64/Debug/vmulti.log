@@ -1,0 +1,104 @@
+﻿  Building 'vmulti' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  vmulti.c
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(224,30): error C2061: 语法错误: 标识符“CRITICAL_SECTION”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(224,30): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(225,31): error C2061: 语法错误: 标识符“PCRITICAL_SECTION”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(225,31): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(226,31): error C2061: 语法错误: 标识符“LPCRITICAL_SECTION”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(226,31): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(228,36): error C2061: 语法错误: 标识符“CRITICAL_SECTION_DEBUG”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(228,36): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(229,37): error C2061: 语法错误: 标识符“PCRITICAL_SECTION_DEBUG”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(229,37): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(230,37): error C2061: 语法错误: 标识符“LPCRITICAL_SECTION_DEBUG”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\minwinbase.h(230,37): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(136,38): error C2146: 语法错误: 缺少“)”(在标识符“Handler”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(136,38): error C2081: “PVECTORED_EXCEPTION_HANDLER”: 形参表中的名称非法
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(136,38): error C2061: 语法错误: 标识符“Handler”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(136,38): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(137,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(152,38): error C2146: 语法错误: 缺少“)”(在标识符“Handler”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(152,38): error C2081: “PVECTORED_EXCEPTION_HANDLER”: 形参表中的名称非法
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(152,38): error C2061: 语法错误: 标识符“Handler”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(152,38): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\errhandlingapi.h(153,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\fibersapi.h(37,37): error C2146: 语法错误: 缺少“)”(在标识符“lpCallback”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\fibersapi.h(37,37): error C2061: 语法错误: 标识符“lpCallback”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\fibersapi.h(37,37): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\fibersapi.h(38,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(138,33): error C2146: 语法错误: 缺少“)”(在标识符“HeapInformationClass”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(138,33): error C2081: “HEAP_INFORMATION_CLASS”: 形参表中的名称非法
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(138,33): error C2061: 语法错误: 标识符“HeapInformationClass”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(138,33): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(138,53): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(141,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(219,33): error C2146: 语法错误: 缺少“)”(在标识符“HeapInformationClass”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(219,33): error C2081: “HEAP_INFORMATION_CLASS”: 形参表中的名称非法
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(219,33): error C2061: 语法错误: 标识符“HeapInformationClass”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(219,33): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(219,53): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\heapapi.h(223,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(34,21): error C2061: 语法错误: 标识符“SRWLOCK”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(34,21): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(34,28): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(42,20): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(42,20): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(42,20): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(43,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(50,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(50,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(50,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(51,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(58,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(58,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(58,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(59,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(66,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(66,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(66,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(67,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(74,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(74,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(74,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(75,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(82,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(82,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(82,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(83,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(90,22): error C2146: 语法错误: 缺少“)”(在标识符“SRWLock”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(90,22): error C2061: 语法错误: 标识符“SRWLock”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(90,22): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(91,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(111,30): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(111,30): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(111,30): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(112,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(120,32): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(120,32): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(120,32): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(121,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(127,32): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(127,32): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(127,32): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(128,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(135,30): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(135,30): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(135,30): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(135,47): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(137,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(145,30): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(145,30): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(145,30): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(145,47): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(148,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(156,32): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(156,32): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(156,32): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(156,49): error C2059: 语法错误:“,”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(158,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(166,32): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(166,32): error C2061: 语法错误: 标识符“lpCriticalSection”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(166,32): error C2059: 语法错误:“;”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(167,5): error C2059: 语法错误:“)”
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(175,32): error C2146: 语法错误: 缺少“)”(在标识符“lpCriticalSection”的前面)
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\synchapi.h(175,32): fatal  error C1003: 错误计数超过 100；正在停止编译
